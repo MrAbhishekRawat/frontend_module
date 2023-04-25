@@ -1,34 +1,32 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import ExpenseItem from './ExpenseItem';
 import Card from '../UI/Card';
 import './Expns.css';
 
 const Expenses = (props) => {
+  const [expenses, setExpenses] = useState(props.items);
+
+  const deleteExpenseHandler = (id) => {
+    setExpenses((prevExpenses) => {
+      const updatedExpenses = prevExpenses.filter((expense) => expense.id !== id);
+      return updatedExpenses;
+    });
+  };
+
   return (
     <Card className="expenses">
-      <ExpenseItem
-        title={props.items[0].title}
-        amount={props.items[0].amount}
-        date={props.items[0].date}
-      />
-      <ExpenseItem
-        title={props.items[1].title}
-        amount={props.items[1].amount}
-        date={props.items[1].date}
-      />
-      <ExpenseItem
-        title={props.items[2].title}
-        amount={props.items[2].amount}
-        date={props.items[2].date}
-      />
-      <ExpenseItem
-        title={props.items[3].title}
-        amount={props.items[3].amount}
-        date={props.items[3].date}
-      />
+      {expenses.map((expense) => (
+        <ExpenseItem
+          key={expense.id}
+          id={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+          onDelete={deleteExpenseHandler}
+        />
+      ))}
     </Card>
   );
-}
+};
 
 export default Expenses;
