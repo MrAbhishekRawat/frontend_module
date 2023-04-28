@@ -5,3 +5,11 @@
     width: 50rem;
     max-width: 95%;
   }
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgb(228, 48, 48);
+}
