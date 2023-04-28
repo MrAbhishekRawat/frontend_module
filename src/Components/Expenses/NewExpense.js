@@ -3,9 +3,11 @@ import './NewExpense.css';
 
 const NewExpense=(props)=>{
     const saveExpenseDataHandler=(enteredExpenseData)=>{
+        
         const expenseData={
             ...enteredExpenseData,
-            id: Math.random().toString()
+            id: (Math.random()*7777777777).toString()
+            
         }
         props.onAddExpense(expenseData);
     }
